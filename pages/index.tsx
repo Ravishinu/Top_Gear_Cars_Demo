@@ -3,6 +3,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { FaSearch, FaCar, FaStar, FaWhatsapp } from 'react-icons/fa';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import dynamic from 'next/dynamic';
+
+const CarCarousel = dynamic(() => import('../components/CarCarousel'), {
+  ssr: false,
+});
 
 // Sample car data
 const premiumCars = [
@@ -75,17 +80,23 @@ const Home = () => {
       </Head>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white overflow-hidden py-20">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
-          <div className="w-full h-full bg-[url('/images/hero-bg.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/30 to-black/80 z-10"></div>
+          <div className="w-full h-full bg-gray-900"></div>
         </div>
         
-        <div className="container mx-auto px-4 z-10 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Find Your Dream PreOwned Car</h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Quality vehicles, transparent pricing, and exceptional service.</p>
-          
-          <div className="max-w-2xl mx-auto bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+        <div className="container mx-auto px-4 z-10 text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">Find Your Dream PreOwned Car</h1>
+          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-gray-300">Quality vehicles, transparent pricing, and exceptional service.</p>
+        </div>
+        
+        <div className="w-full max-w-6xl mx-auto px-4 z-10 mb-12">
+          <CarCarousel />
+        </div>
+        
+        <div className="w-full max-w-2xl mx-auto px-4 z-10">
+          <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/10">
             <h2 className="text-2xl font-semibold mb-4">What's your budget?</h2>
             <div className="mb-4">
               <div className="flex justify-between mb-2">
